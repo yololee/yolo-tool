@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>yolo-tool-all</artifactId>
+    <version>0.0.1</version>
+    <name>yolo-tool-all</name>
+    <description>yolo-tool-all</description>
+
+    <parent>
+        <groupId>com.yolo</groupId>
+        <artifactId>yolo-tool</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.yolo</groupId>
+            <artifactId>yolo-tool-launch</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yolo</groupId>
+            <artifactId>yolo-tool-common</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+    </dependencies>
+
+
+</project>
