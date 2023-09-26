@@ -1,4 +1,4 @@
-package com.yolo.common.support.exception;
+package com.yolo.common.exception;
 
 
 import com.yolo.common.support.utils.exception.ExceptionUtil;

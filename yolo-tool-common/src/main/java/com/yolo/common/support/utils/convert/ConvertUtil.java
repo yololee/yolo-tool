@@ -12,9 +12,9 @@ import java.util.Set;
 /**
  * 类型转换器
  */
-public class ConvertUtils {
+public class ConvertUtil {
 
-    private ConvertUtils() {
+    private ConvertUtil() {
     }
 
     /**

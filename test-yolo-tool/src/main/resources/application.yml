@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: test-yolo-tool
+server:
+  port: 8081
+
+yolo:
+  swagger:
+    enabled: true
+    title: "swagger测试"
+    description: "描述"
+    version: V1.0
+    contact-user: yolo
+    contact-email: huanglei421023@163.com
+    contact-url: https://gitee.com/huanglei1111
+# Knife4j接口文档
+knife4j:
+  enable: true
+  # 开启生产环境屏蔽
+  production: false
+  basic:
+    enable: false
+    username: admin
+    password: 123456

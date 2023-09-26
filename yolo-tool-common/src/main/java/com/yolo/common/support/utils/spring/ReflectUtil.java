@@ -1,7 +1,11 @@
 package com.yolo.common.support.utils.spring;
 
 
+import cn.hutool.core.collection.CollUtil;
 import com.yolo.common.support.utils.bean.BeanUtil;
+import com.yolo.common.support.utils.collection.CollectionUtil;
+import com.yolo.common.support.utils.string.StringPool;
+import com.yolo.common.support.utils.string.StringUtil;
 import lombok.experimental.UtilityClass;
 import org.springframework.beans.BeansException;
 import org.springframework.cglib.core.CodeGenerationException;
@@ -9,6 +13,7 @@ import org.springframework.core.convert.Property;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
@@ -16,12 +21,58 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import static cn.hutool.core.util.ReflectUtil.getMethodByName;
+import static cn.hutool.core.util.ReflectUtil.invoke;
 
 /**
  * 反射工具类
  */
 @UtilityClass
 public class ReflectUtil extends ReflectionUtils {
+
+
+	private static final String SETTER_PREFIX = "set";
+
+	private static final String GETTER_PREFIX = "get";
+
+	/**
+	 * 调用Getter方法.
+	 * 支持多级，如：对象名.对象名.方法
+	 */
+	@SuppressWarnings("unchecked")
+	public static <E> E invokeGetter(Object obj, String propertyName) {
+		Object object = obj;
+		String[] split = StringUtil.split(propertyName, StringPool.DOT);
+		if (split != null){
+			for (String name : split) {
+				String getterMethodName = GETTER_PREFIX + StringUtil.capitalize(name);
+				object = invoke(object, getterMethodName);
+			}
+		}
+
+		return (E) object;
+	}
+
+	/**
+	 * 调用Setter方法, 仅匹配方法名。
+	 * 支持多级，如：对象名.对象名.方法
+	 */
+	public static <E> void invokeSetter(Object obj, String propertyName, E value) {
+		Object object = obj;
+		String[] names = StringUtils.split(propertyName, ".");
+		for (int i = 0; i < Objects.requireNonNull(names).length; i++) {
+			if (i < names.length - 1) {
+				String getterMethodName = GETTER_PREFIX + StringUtils.capitalize(names[i]);
+				object = invoke(object, getterMethodName);
+			} else {
+				String setterMethodName = SETTER_PREFIX + StringUtils.capitalize(names[i]);
+				Method method = getMethodByName(object.getClass(), setterMethodName);
+				invoke(object, method, value);
+			}
+		}
+	}
 
 	/**
 	 * 获取 Bean 的所有 get方法

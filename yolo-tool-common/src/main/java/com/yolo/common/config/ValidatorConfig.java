@@ -18,12 +18,11 @@ public class ValidatorConfig {
      * 配置校验框架 快速返回模式
      */
     @Bean
-    public Validator validator(){
-        ValidatorFactory validatorFactory = Validation.byProvider( HibernateValidator.class )
+    public Validator validator() {
+        ValidatorFactory validatorFactory = Validation.byProvider(HibernateValidator.class)
                 .configure()
-                .addProperty( "hibernate.validator.fail_fast", "true" )
+                .addProperty("hibernate.validator.fail_fast", "true")
                 .buildValidatorFactory();
-
         return validatorFactory.getValidator();
     }
 

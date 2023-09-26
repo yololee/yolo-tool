@@ -1,7 +1,7 @@
 package com.yolo.common.support.utils.web;
 
 
-import com.yolo.common.support.utils.convert.ConvertUtils;
+import com.yolo.common.support.utils.convert.ConvertUtil;
 import com.yolo.common.support.utils.jackson.JsonUtil;
 import com.yolo.common.support.utils.string.Charsets;
 import com.yolo.common.support.utils.string.StringPool;
@@ -48,35 +48,35 @@ public class WebUtil extends org.springframework.web.util.WebUtils {
 	 * 获取String参数
 	 */
 	public static String getParameter(String name, String defaultValue) {
-		return ConvertUtils.toStr(Objects.requireNonNull(getRequest()).getParameter(name), defaultValue);
+		return ConvertUtil.toStr(Objects.requireNonNull(getRequest()).getParameter(name), defaultValue);
 	}
 
 	/**
 	 * 获取Integer参数
 	 */
 	public static Integer getParameterToInt(String name) {
-		return ConvertUtils.toInt(Objects.requireNonNull(getRequest()).getParameter(name));
+		return ConvertUtil.toInt(Objects.requireNonNull(getRequest()).getParameter(name));
 	}
 
 	/**
 	 * 获取Integer参数
 	 */
 	public static Integer getParameterToInt(String name, Integer defaultValue) {
-		return ConvertUtils.toInt(Objects.requireNonNull(getRequest()).getParameter(name), defaultValue);
+		return ConvertUtil.toInt(Objects.requireNonNull(getRequest()).getParameter(name), defaultValue);
 	}
 
 	/**
 	 * 获取Boolean参数
 	 */
 	public static Boolean getParameterToBool(String name) {
-		return ConvertUtils.toBool(Objects.requireNonNull(getRequest()).getParameter(name));
+		return ConvertUtil.toBool(Objects.requireNonNull(getRequest()).getParameter(name));
 	}
 
 	/**
 	 * 获取Boolean参数
 	 */
 	public static Boolean getParameterToBool(String name, Boolean defaultValue) {
-		return ConvertUtils.toBool(Objects.requireNonNull(getRequest()).getParameter(name), defaultValue);
+		return ConvertUtil.toBool(Objects.requireNonNull(getRequest()).getParameter(name), defaultValue);
 	}
 
 	/**
