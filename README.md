@@ -54,6 +54,16 @@ knife4j:
 
 > 注意：只有当yolo.swagger.enabled开启的时候才可以使用knife4j的配置信息，不然会报错
 
+#### 线程池配置
+
+```yml
+yolo:
+  async:
+    enabled: true
+    keep-alive-seconds: 300
+    queue-capacity: 10000
+```
+
 ### yolo-tool-mybatis-plus
 
 > 集成mybatis-plus

@@ -90,6 +90,10 @@ yolo:
       enabled: false
   env: dev
   name: test-demo
+  async:
+    enabled: true
+    keep-alive-seconds: 300
+    queue-capacity: 10000
 # Knife4j接口文档
 knife4j:
   enable: true

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 @AllArgsConstructor
-public class BladeBootAutoConfiguration {
+public class BootAutoConfig {
 
 	private LaunchProperties bladeProperties;
 
