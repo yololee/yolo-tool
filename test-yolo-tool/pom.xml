@@ -20,7 +20,19 @@
     <dependencies>
         <dependency>
             <groupId>com.yolo</groupId>
-            <artifactId>yolo-tool-all</artifactId>
+            <artifactId>yolo-tool-common</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yolo</groupId>
+            <artifactId>yolo-tool-excel</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yolo</groupId>
+            <artifactId>yolo-tool-mybatis-plus</artifactId>
             <version>0.0.1</version>
         </dependency>
 
@@ -28,6 +40,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.28</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yolo</groupId>
+            <artifactId>yolo-tool-log</artifactId>
+            <version>0.0.1</version>
         </dependency>
 
     </dependencies>
@@ -62,7 +80,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.example.test.TestYoloToolApplication</mainClass>
+                    <mainClass>com.yolo.test.TestYoloToolApplication</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>

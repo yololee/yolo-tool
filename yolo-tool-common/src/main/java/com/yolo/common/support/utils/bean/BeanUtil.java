@@ -1,15 +1,22 @@
 package com.yolo.common.support.utils.bean;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.ReflectUtil;
+import com.yolo.common.support.utils.collection.CollectionUtil;
+import com.yolo.common.support.utils.stream.StreamUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.cglib.beans.BeanGenerator;
 import org.springframework.cglib.beans.BeanMap;
 import org.springframework.cglib.core.CodeGenerationException;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 
 import java.beans.PropertyDescriptor;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 实体工具类
@@ -125,7 +132,7 @@ public class BeanUtil extends org.springframework.beans.BeanUtils {
 	 */
 	public static <T> T copyProperties(Object source, Class<T> target) throws BeansException {
 		T to = newInstance(target);
-		BeanUtil.copyProperties(source, to);
+		BeanUtils.copyProperties(source, to);
 		return to;
 	}
 
@@ -136,6 +143,9 @@ public class BeanUtil extends org.springframework.beans.BeanUtils {
 	 */
 	@SuppressWarnings("unchecked")
 	public static Map<String, Object> toMap(Object bean) {
+		if (ObjectUtils.isEmpty(bean)){
+			return Collections.emptyMap();
+		}
 		return BeanMap.create(bean);
 	}
 
@@ -147,9 +157,55 @@ public class BeanUtil extends org.springframework.beans.BeanUtils {
 	 * @return {T}
 	 */
 	public static <T> T toBean(Map<String, Object> beanMap, Class<T> valueType) {
+		if (CollectionUtils.isEmpty(beanMap)) {
+			return null;
+		}
+		if (ObjectUtils.isEmpty(valueType)) {
+			return null;
+		}
 		T bean = BeanUtil.newInstance(valueType);
 		BeanMap.create(bean).putAll(beanMap);
 		return bean;
+	}
+
+	/**
+	 * 列表对象基于class创建拷贝
+	 *
+	 * @param sourceList 数据来源实体列表
+	 * @param desc       描述对象 转换后的对象
+	 * @return desc
+	 */
+	public static <T, V> List<V> copyList(List<T> sourceList, Class<V> desc) {
+		if (ObjectUtil.isNull(sourceList)) {
+			return null;
+		}
+		if (CollUtil.isEmpty(sourceList)) {
+			return CollUtil.newArrayList();
+		}
+		return StreamUtil.toList(sourceList, source -> {
+			V target = BeanUtil.newInstance(desc);
+			copy(source, target);
+			return target;
+		});
+	}
+
+	/**
+	 * map拷贝到map
+	 *
+	 * @param map   数据来源
+	 * @param clazz 返回的对象类型
+	 * @return map对象
+	 */
+	public static <T, V> Map<String, V> mapToMap(Map<String, T> map, Class<V> clazz) {
+		if (MapUtil.isEmpty(map)) {
+			return null;
+		}
+		if (ObjectUtil.isNull(clazz)) {
+			return null;
+		}
+		Map<String, V> copyMap = new LinkedHashMap<>(map.size());
+		map.forEach((k, v) -> copyMap.put(k, copy(v, clazz)));
+		return copyMap;
 	}
 
 	/**

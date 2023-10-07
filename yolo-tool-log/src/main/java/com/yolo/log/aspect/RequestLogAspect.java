@@ -1,4 +1,4 @@
-package com.yolo.common.support.logger;
+package com.yolo.log.aspect;
 
 import com.yolo.common.constant.AppConstant;
 import com.yolo.common.support.utils.bean.BeanUtil;
@@ -74,7 +74,7 @@ public class RequestLogAspect {
 			}
 			// 处理 List
 			if (value instanceof List) {
-				value = ((List) value).get(0);
+				value = ((List<?>) value).get(0);
 			}
 			// 处理 参数
 			if (value instanceof HttpServletRequest) {
@@ -100,7 +100,6 @@ public class RequestLogAspect {
 				}
 				if (isSkip.get()) {
 					paraMap.put(parameterName, "此参数不能序列化为json");
-					continue;
 				}
 			} else {
 				// 参数名
@@ -114,8 +113,9 @@ public class RequestLogAspect {
 				paraMap.put(paraName, value);
 			}
 		}
+		System.out.println();
 		HttpServletRequest request = WebUtil.getRequest();
-		String requestURI = Objects.requireNonNull(request).getRequestURI();
+		String requestUri = Objects.requireNonNull(request).getRequestURI();
 		String requestMethod = request.getMethod();
 
 		// 构建成一条长 日志，避免并发下日志错乱
@@ -126,7 +126,7 @@ public class RequestLogAspect {
 		// 打印路由
 		beforeReqLog.append("===> {}: {}");
 		beforeReqArgs.add(requestMethod);
-		beforeReqArgs.add(requestURI);
+		beforeReqArgs.add(requestUri);
 		// 请求参数
 		if (paraMap.isEmpty()) {
 			beforeReqLog.append("\n");
@@ -162,7 +162,7 @@ public class RequestLogAspect {
 			long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
 			afterReqLog.append("<=== {}: {} ({} ms)\n");
 			afterReqArgs.add(requestMethod);
-			afterReqArgs.add(requestURI);
+			afterReqArgs.add(requestUri);
 			afterReqArgs.add(tookMs);
 			afterReqLog.append("================  Response End   ================\n");
 			log.info(afterReqLog.toString(), afterReqArgs.toArray());

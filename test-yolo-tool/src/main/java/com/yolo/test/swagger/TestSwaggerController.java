@@ -1,4 +1,4 @@
-package com.example.test.swagger;
+package com.yolo.test.swagger;
 
 import com.yolo.common.api.R;
 import io.swagger.annotations.Api;

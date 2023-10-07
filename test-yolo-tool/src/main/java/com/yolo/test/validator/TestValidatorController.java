@@ -1,4 +1,4 @@
-package com.example.test.validator;
+package com.yolo.test.validator;
 
 
 import com.yolo.common.api.R;

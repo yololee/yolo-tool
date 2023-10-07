@@ -7,24 +7,34 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationEvent;
+import org.springframework.stereotype.Component;
 
 /**
  * spring 工具类
  */
 @Slf4j
+@Component
 public class SpringUtil implements ApplicationContextAware, BeanFactoryPostProcessor {
 
 	private static ConfigurableListableBeanFactory beanFactory;
 	private static ApplicationContext applicationContext;
 
-	@Override
-	public void setApplicationContext(ApplicationContext context) throws BeansException {
-		SpringUtil.applicationContext = context;
+
+	public SpringUtil() {
 	}
 
 	@Override
-	public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
-		SpringUtil.beanFactory = configurableListableBeanFactory;
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		SpringUtil.applicationContext = applicationContext;
+	}
+
+	@Override
+	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+		SpringUtil.beanFactory = beanFactory;
+	}
+
+	public static ApplicationContext getApplicationContext(){
+		return applicationContext;
 	}
 
 	public static <T> T getBean(Class<T> clazz) {
@@ -51,21 +61,17 @@ public class SpringUtil implements ApplicationContextAware, BeanFactoryPostProce
 		return (T) applicationContext.getBean(beanName, clazz);
 	}
 
-	public static ApplicationContext getContext() {
-		if (applicationContext == null) {
-			return null;
+	public static void publishEvent(ApplicationEvent event) {
+		if (null != applicationContext) {
+			applicationContext.publishEvent(event);
 		}
-		return applicationContext;
+
 	}
 
-	public static void publishEvent(ApplicationEvent event) {
-		if (applicationContext == null) {
-			return;
-		}
-		try {
+	public static void publishEvent(Object event) {
+		if (null != applicationContext) {
 			applicationContext.publishEvent(event);
-		} catch (Exception ex) {
-			log.error(ex.getMessage());
 		}
+
 	}
 }

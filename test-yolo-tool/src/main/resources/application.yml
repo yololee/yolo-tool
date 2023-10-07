@@ -1,6 +1,78 @@
 spring:
   application:
     name: test-yolo-tool
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yolo-tool?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&autoReconnect=true&rewriteBatchedStatements=true
+    password: root
+    username: root
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      pool-name: DataSource
+      auto-commit: true
+      read-only: false
+      # 最小空闲连接数，被注释了，不设置该属性
+      #      minimum-idle: 1
+      # 最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
+      maximum-pool-size: 10
+      # 空闲连接状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟
+      idle-timeout: 600000
+      # 连接存活最大时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL wait_timeout参数（show variables like '%timeout%';）
+      max-lifetime: 1800000
+      # 验证连接是否有效的最大等待响应时间
+      validation-timeout: 5000
+      # 连接测试，如果是JDBC4驱动程序，不要设置这个属性
+      # connection-test-query: SELECT 1
+      # 连接到数据库时等待的最长时间（秒）
+      login-timeout: 5
+      # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒
+      connection-timeout: 20000
+
+mybatis-plus:
+  #mybatis配置文件
+  #config-location: classpath:mybatis-config.xml
+  # mapper映射位置
+  mapper-locations: classpath:/mapper/*/**Mapper.xml
+  #所有domain别名类所在包
+  type-aliases-package: com.yolo
+  # 启动时是否检查 MyBatis XML 文件的存在，默认不检查
+  check-config-location: false
+  configuration:
+    # 更详细的日志输出 会有性能损耗 org.apache.ibatis.logging.stdout.StdOutImpl
+    # 关闭日志记录 (可单纯使用 p6spy 分析) org.apache.ibatis.logging.nologging.NoLoggingImpl
+    # 默认日志输出 org.apache.ibatis.logging.slf4j.Slf4jImpl
+#    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+    #类属性与表字段的驼峰映射，mybatiplus默认true开启，mybatis需要手动配置，且config-location和configuration不能同时出现
+    map-underscore-to-camel-case: true
+    # MyBatis 自动映射策略
+    # NONE：不启用 PARTIAL：只对非嵌套 resultMap 自动映射 FULL：对所有 resultMap 自动映射
+    auto-mapping-behavior: partial
+    # MyBatis 自动映射时未知列或未知属性处理策
+    # NONE：不做处理 WARNING：打印相关警告 FAILING：抛出异常和详细信息
+    auto-mapping-unknown-column-behavior: none
+  #全局配置
+  global-config:
+    # 是否打印 Logo banner
+    banner: false
+    #数据库配置
+    db-config:
+      #主键策略
+      # AUTO 自增 NONE 空 INPUT 用户输入 ASSIGN_ID 雪花 ASSIGN_UUID 唯一 UUID
+      id-type: ASSIGN_ID  # IdType默认的全局
+      #表名前缀为tb_，表名为前缀拼接类名（小写）
+      #      table-prefix: tb_
+      logic-delete-field: isDeleted # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+      logic-delete-value: 1 # 逻辑已删除值
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+      # 字段验证策略之 insert,在 insert 的时候的字段验证策略
+      # IGNORED 忽略 NOT_NULL 非NULL NOT_EMPTY 非空 DEFAULT 默认 NEVER 不加入 SQL
+      insert-strategy: not_null
+      # 字段验证策略之 update,在 update 的时候的字段验证策略
+      update-strategy: not_null
+      # 字段验证策略之 select,在 select 的时候的字段验证策略既 wrapper 根据内部 entity 生成的 where 条件
+      where-strategy: not_null
 server:
   port: 8081
 
@@ -13,6 +85,11 @@ yolo:
     contact-user: yolo
     contact-email: huanglei421023@163.com
     contact-url: https://gitee.com/huanglei1111
+  mybatis:
+    sql-log:
+      enabled: false
+  env: dev
+  name: test-demo
 # Knife4j接口文档
 knife4j:
   enable: true

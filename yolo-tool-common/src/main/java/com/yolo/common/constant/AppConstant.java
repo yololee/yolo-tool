@@ -3,6 +3,12 @@ package com.yolo.common.constant;
 
 public interface AppConstant {
 
+
+	/**
+	 * 日志模块名称
+	 */
+	String APPLICATION_LOG_NAME =  "log";
+
 	/**
 	 * 开发环境
 	 */
