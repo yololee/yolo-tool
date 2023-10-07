@@ -1,5 +1,6 @@
 package com.yolo.common.support.utils.validator;
 
+import com.yolo.common.support.utils.bean.ObjectUtil;
 import com.yolo.common.support.utils.spring.SpringUtil;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -18,9 +19,11 @@ public class ValidatorUtil {
     private static final Validator VALID = SpringUtil.getBean(Validator.class);
 
     public static <T> void validate(T object, Class<?>... groups) {
-        Set<ConstraintViolation<T>> validate = VALID.validate(object, groups);
-        if (!validate.isEmpty()) {
-            throw new ConstraintViolationException("参数校验异常", validate);
+        if (ObjectUtil.isNotEmpty(VALID)){
+            Set<ConstraintViolation<T>> validate = VALID.validate(object, groups);
+            if (!validate.isEmpty()) {
+                throw new ConstraintViolationException("参数校验异常", validate);
+            }
         }
     }
 

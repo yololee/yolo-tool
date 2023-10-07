@@ -8,6 +8,8 @@ yolo-tool
 ├── yolo-tool-common -- 通用工具模块
 ├── yolo-tool-mybatis-plus -- mybatis-plus增强模块  
 ├── yolo-tool-excel -- excel模块  
+├── yolo-tool-log -- 日志模块   
+├── yolo-tool-xss -- xss模块  
 ```
 
 ### yolo-tool-launch
@@ -100,3 +102,53 @@ yolo:
 >
 > 1. 对easyexcel进行封装增强，自定义导入结果和导入默认导入监听
 > 2. 自定义注解，枚举类型转换，合并策略，级联下拉选
+
+### yolo-tool-log
+
+> 介绍：自定义注解对日志进行入库
+
+首先需要执行[yolo-tool-log.sql文件](https://gitee.com/huanglei1111/yolo-tool/blob/master/doc/yolo-tool-log.sql)
+
+使用
+
+```xml
+        <dependency>
+            <groupId>com.yolo</groupId>
+            <artifactId>yolo-tool-log</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+```
+
+### yolo-tool-xss
+
+> 介绍
+>
+> 1. 对表单绑定的字符串类型进行 xss 处理
+> 2. 对 json 字符串数据进行 xss 处理
+> 3. 提供路由和控制器方法级别的放行规则
+> 4. 对表单和 json 字符串 trim 处理
+
+使用
+
+```xml
+    <dependency>
+        <groupId>com.yolo</groupId>
+        <artifactId>yolo-tool-xss</artifactId>
+        <version>0.0.1</version>
+    </dependency>
+```
+
+配置
+
+```yml
+yolo:
+  xss:
+    enabled: true #开启xss
+    trim-text: true # 全局是否去除文本首尾空格
+    mode: clear # 模式：clear 清理（默认），escape 转义
+    pretty-print: false # clear 专用 prettyPrint，默认关闭： 保留换行
+    enable-escape: false # clear 专用 转义，默认关闭
+    path-patterns: # 拦截的路径默认为 /**
+    path-exclude-patterns: # 放行的路径，默认为空
+```
+

@@ -94,6 +94,14 @@ yolo:
     enabled: true
     keep-alive-seconds: 300
     queue-capacity: 10000
+  xss:
+    enabled: true #开启xss
+    trim-text: true # 全局是否去除文本首尾空格
+    mode: clear # 模式：clear 清理（默认），escape 转义
+    pretty-print: false # clear 专用 prettyPrint，默认关闭： 保留换行
+    enable-escape: false # clear 专用 转义，默认关闭
+    path-patterns: # 拦截的路径默认为 /**
+    path-exclude-patterns: # 放行的路径，默认为空
 # Knife4j接口文档
 knife4j:
   enable: true

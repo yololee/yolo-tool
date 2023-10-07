@@ -1,14 +1,11 @@
 package com.yolo.log.aspect;
 
 import com.yolo.log.annotation.ApiLog;
-import com.yolo.log.properties.YoloLogProperties;
 import com.yolo.log.publisher.ApiLogPublisher;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Component;
 
 /**
  * 操作日志使用spring event异步入库

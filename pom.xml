@@ -16,6 +16,7 @@
         <module>yolo-tool-excel</module>
         <module>yolo-tool-mybatis-plus</module>
         <module>yolo-tool-log</module>
+        <module>yolo-tool-xss</module>
 
     </modules>
 
