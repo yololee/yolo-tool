@@ -1,6 +1,6 @@
 package com.yolo.launch;
 
-import com.yolo.launch.utils.INetUtil;
+import com.yolo.common.support.utils.web.INetUtil;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.SmartInitializingSingleton;

@@ -1,8 +1,8 @@
 package com.yolo.log.event.listener;
 
+import com.yolo.common.properties.LaunchProperties;
 import com.yolo.common.support.utils.spring.SpringUtil;
 import com.yolo.launch.ServerInfo;
-import com.yolo.launch.properties.LaunchProperties;
 import com.yolo.log.constant.EventConstant;
 import com.yolo.log.event.ApiLogEvent;
 import com.yolo.log.mapper.LogApiMapper;

@@ -2,13 +2,13 @@ package com.yolo.log.utils;
 
 
 
+import com.yolo.common.properties.LaunchProperties;
 import com.yolo.common.support.utils.bean.ObjectUtil;
 import com.yolo.common.support.utils.date.DateUtil;
 import com.yolo.common.support.utils.string.StringPool;
 import com.yolo.common.support.utils.web.UrlUtil;
 import com.yolo.common.support.utils.web.WebUtil;
 import com.yolo.launch.ServerInfo;
-import com.yolo.launch.properties.LaunchProperties;
 import com.yolo.log.model.LogAbstract;
 
 import javax.servlet.http.HttpServletRequest;

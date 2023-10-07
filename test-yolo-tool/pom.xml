@@ -18,6 +18,12 @@
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.yolo</groupId>
+            <artifactId>yolo-tool-launch</artifactId>
+            <version>0.0.1</version>
+        </dependency>
         <dependency>
             <groupId>com.yolo</groupId>
             <artifactId>yolo-tool-common</artifactId>

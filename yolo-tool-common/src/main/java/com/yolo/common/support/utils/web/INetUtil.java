@@ -1,4 +1,4 @@
-package com.yolo.launch.utils;
+package com.yolo.common.support.utils.web;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;

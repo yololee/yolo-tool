@@ -1,5 +1,5 @@
 
-package com.yolo.launch.properties;
+package com.yolo.common.properties;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,8 +17,8 @@ import java.util.Objects;
 /**
  * 配置文件
  */
-@ConfigurationProperties("yolo")
 @Component
+@ConfigurationProperties(prefix = "yolo")
 public class LaunchProperties implements EnvironmentAware, EnvironmentCapable {
 	@Nullable
 	private Environment environment;

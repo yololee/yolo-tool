@@ -1,7 +1,7 @@
 package com.yolo.log.config;
 
+import com.yolo.common.properties.LaunchProperties;
 import com.yolo.launch.ServerInfo;
-import com.yolo.launch.properties.LaunchProperties;
 import com.yolo.log.aspect.ApiLogAspect;
 import com.yolo.log.event.listener.ApiLogListener;
 import com.yolo.log.event.listener.ErrorLogListener;
