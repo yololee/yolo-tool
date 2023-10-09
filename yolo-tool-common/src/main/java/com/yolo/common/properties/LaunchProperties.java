@@ -45,7 +45,7 @@ public class LaunchProperties implements EnvironmentAware, EnvironmentCapable {
 	private Boolean isLocal = Boolean.FALSE;
 
 	/**
-	 * 装载自定义配置blade.prop.xxx
+	 * 装载自定义配置yolo.prop.xxx
 	 */
 	@Getter
 	private final Map<String, String> prop = new HashMap<>();

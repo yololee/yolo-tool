@@ -141,6 +141,23 @@ public class R<T> implements Serializable {
 
 	/**
 	 * 返回R
+	 * @return {@link R}<{@link T}>
+	 */
+	public static <T> R<T> success() {
+		return new R<>(ResultCode.SUCCESS);
+	}
+
+	/**
+	 * 返回R
+	 * @param data 数据
+	 * @return {@link R}<{@link T}>
+	 */
+	public static <T> R<T> success(T data) {
+		return new R<>(ResultCode.SUCCESS,data);
+	}
+
+	/**
+	 * 返回R
 	 *
 	 * @param resultCode 业务代码
 	 * @param msg        消息
@@ -207,6 +224,26 @@ public class R<T> implements Serializable {
 	 */
 	public static <T> R<T> status(boolean flag) {
 		return flag ? success(SystemConstant.DEFAULT_SUCCESS_MESSAGE) : fail(SystemConstant.DEFAULT_FAILURE_MESSAGE);
+	}
+
+	/**
+	 * 返回R
+	 * @param flag 成功状态
+	 * @param msg 提示信息
+	 * @return {@link R}<{@link T}>
+	 */
+	public static <T> R<T> status(boolean flag,String msg) {
+		return flag ? success(msg) : fail(msg);
+	}
+
+	/**
+	 * 返回R
+	 * @param flag 成功状态
+	 * @param code 状态码
+	 * @return {@link R}<{@link T}>
+	 */
+	public static <T> R<T> status(boolean flag,IResultCode code) {
+		return flag ? success(code) : fail(code);
 	}
 
 }

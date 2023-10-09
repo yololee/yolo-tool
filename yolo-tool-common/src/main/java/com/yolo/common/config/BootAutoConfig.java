@@ -10,8 +10,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * 配置类
- *
- * @author Chill
  */
 @Slf4j
 @Component
@@ -33,14 +31,18 @@ public class BootAutoConfig {
 		//设定开发模式
 		me.setDevMode(("dev".equals(launchProperties.getEnv())));
 
+
+        //设定文件上传是否为远程模式
+        me.setRemoteMode(Boolean.TRUE.equals(launchProperties.getBoolean("remote-mode", true)));
+
+
 		//设定文件上传远程地址
 		me.setDomain(launchProperties.get("upload-domain", "http://localhost:8888"));
 
-		//设定文件上传是否为远程模式
-		me.setRemoteMode(Boolean.TRUE.equals(launchProperties.getBoolean("remote-mode", true)));
+
 
 		//远程上传地址
-		me.setRemotePath(launchProperties.get("remote-path", System.getProperty("user.dir") + "/work/blade"));
+		me.setRemotePath(launchProperties.get("remote-path", System.getProperty("user.dir") + "/work/yolo"));
 
 		//设定文件上传头文件夹
 		me.setUploadPath(launchProperties.get("upload-path", "/upload"));

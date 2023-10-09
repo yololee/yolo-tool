@@ -60,6 +60,12 @@
             <version>0.0.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.yolo</groupId>
+            <artifactId>yolo-tool-oss</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
     </dependencies>
 
 

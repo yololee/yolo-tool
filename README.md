@@ -10,15 +10,16 @@ yolo-tool
 ├── yolo-tool-excel -- excel模块  
 ├── yolo-tool-log -- 日志模块   
 ├── yolo-tool-xss -- xss模块  
+├── yolo-tool-oss -- 对象存储模块  
 ```
 
-### yolo-tool-launch
+## 基础启动模块
 
 监听项目名称，ip，端口，等服务信息
 
-### yolo-tool-common
+## 通用工具模块
 
-#### 集成swagger
+### 集成swagger
 
 ```xml
         <dependency>
@@ -56,7 +57,7 @@ knife4j:
 
 > 注意：只有当yolo.swagger.enabled开启的时候才可以使用knife4j的配置信息，不然会报错
 
-#### 线程池配置
+### 线程池配置
 
 ```yml
 yolo:
@@ -66,7 +67,7 @@ yolo:
     queue-capacity: 10000
 ```
 
-### yolo-tool-mybatis-plus
+## mybatis-plus增强模块
 
 > 集成mybatis-plus
 
@@ -86,7 +87,7 @@ yolo:
 
 [Mybatis-plus配置](https://gitee.com/huanglei1111/yolo-springboot-demo/blob/master/demo-orm-mybatis-plus/src/main/resources/application.yml)
 
-### yolo-tool-excel
+## excel模块
 
 > 集成easyexcel
 
@@ -103,9 +104,11 @@ yolo:
 > 1. 对easyexcel进行封装增强，自定义导入结果和导入默认导入监听
 > 2. 自定义注解，枚举类型转换，合并策略，级联下拉选
 
-### yolo-tool-log
+## 日志模块
 
-> 介绍：自定义注解对日志进行入库
+### api日志
+
+> 自定义注解对日志进行入库
 
 首先需要执行[yolo-tool-log.sql文件](https://gitee.com/huanglei1111/yolo-tool/blob/master/doc/yolo-tool-log.sql)
 
@@ -119,7 +122,20 @@ yolo:
         </dependency>
 ```
 
-### yolo-tool-xss
+### 控制器 请求日志
+
+> 当处于开发环境或者测试环境会打印请求响应结果
+
+配置如下
+
+```yml
+# dev 或者 test
+spring:
+  profiles:
+    active: dev
+```
+
+## xss模块
 
 > 介绍
 >
@@ -150,5 +166,32 @@ yolo:
     enable-escape: false # clear 专用 转义，默认关闭
     path-patterns: # 拦截的路径默认为 /**
     path-exclude-patterns: # 放行的路径，默认为空
+```
+
+## oss模块
+
+集成了阿里云，七牛云，minio
+
+使用
+
+```xml 
+        <dependency>
+            <groupId>com.yolo</groupId>
+            <artifactId>yolo-tool-oss</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+```
+
+配置
+
+```yml
+yolo:
+  oss:
+    enabled: true # 是否启用
+    name: alioss  # 对象存储名称 阿里云:alioss  minio:minio 七牛:qiniu
+    endpoint: oss-cn-beijing.aliyuncs.com # 对象存储服务的URL
+    access-key: LTAI5tGXXXXXXXXXXp9bhB    # Access key就像用户ID，可以唯一标识你的账户
+    secret-key: DY1A7KGWrxXXXXXXXGFWmjeXE # Secret key是你账户的密码
+    bucket-name: mytanghua                # 默认的存储桶名称
 ```
 

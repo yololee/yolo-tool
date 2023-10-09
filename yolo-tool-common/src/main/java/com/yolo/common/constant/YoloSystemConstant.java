@@ -23,7 +23,7 @@ public class YoloSystemConstant {
     /**
      * 上传下载路径(物理路径)
      */
-    private String remotePath = System.getProperty("user.dir") + "/target/blade";
+    private String remotePath = System.getProperty("user.dir") + "/target/yolo";
 
     /**
      * 上传路径(相对路径)
