@@ -63,6 +63,11 @@ public interface SystemConstant {
 	String LOG_NORMAL_TYPE = "1";
 
 	/**
+	 * 资源映射路径 前缀
+	 */
+	String RESOURCE_PREFIX = "/profile";
+
+	/**
 	 * 默认为空消息
 	 */
 	String DEFAULT_NULL_MESSAGE = "暂无承载数据";

@@ -1,7 +1,7 @@
 package com.yolo.xss.core.clean;
 
+import com.yolo.common.properties.XssProperties;
 import com.yolo.xss.core.XssType;
-import com.yolo.xss.properties.XssProperties;
 import com.yolo.xss.utils.XssUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

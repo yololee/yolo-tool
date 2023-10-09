@@ -1,11 +1,11 @@
 package com.yolo.xss.config;
 
+import com.yolo.common.properties.XssProperties;
 import com.yolo.xss.core.XssCleanInterceptor;
 import com.yolo.xss.core.clean.DefaultXssCleaner;
 import com.yolo.xss.core.clean.FormXssClean;
 import com.yolo.xss.core.clean.JacksonXssClean;
 import com.yolo.xss.core.clean.XssCleaner;
-import com.yolo.xss.properties.XssProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -26,7 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @ConditionalOnProperty(prefix = XssProperties.PREFIX, name = "enabled", havingValue = "true", matchIfMissing = true)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-public class MicaXssConfiguration implements WebMvcConfigurer {
+public class XssConfiguration implements WebMvcConfigurer {
 	private final XssProperties xssProperties;
 
 	@Bean

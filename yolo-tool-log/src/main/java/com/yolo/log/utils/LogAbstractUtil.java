@@ -30,7 +30,7 @@ public class LogAbstractUtil {
 	 */
 	public static void addRequestInfoToLog(HttpServletRequest request, LogAbstract logAbstract) {
 		if (ObjectUtil.isNotEmpty(request)) {
-			logAbstract.setRemoteIp(WebUtil.getIP(request));
+			logAbstract.setRemoteIp(WebUtil.getIp(request));
 			logAbstract.setUserAgent(request.getHeader(WebUtil.USER_AGENT_HEADER));
 			logAbstract.setRequestUri(UrlUtil.getPath(request.getRequestURI()));
 			logAbstract.setMethod(request.getMethod());

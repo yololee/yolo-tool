@@ -5,6 +5,7 @@ import com.yolo.oss.rule.BladeOssRule;
 import com.yolo.oss.rule.OssRule;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 @EnableConfigurationProperties(OssProperties.class)
+@ConditionalOnProperty(value = "yolo.oss.enabled", havingValue = "true")
 public class OssConfiguration {
 
 	@Bean

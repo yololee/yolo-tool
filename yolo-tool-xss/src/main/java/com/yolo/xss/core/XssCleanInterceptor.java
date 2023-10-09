@@ -1,8 +1,8 @@
 package com.yolo.xss.core;
 
+import com.yolo.common.properties.XssProperties;
 import com.yolo.common.support.utils.bean.ClassUtil;
 import com.yolo.xss.anno.XssCleanIgnore;
-import com.yolo.xss.properties.XssProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;

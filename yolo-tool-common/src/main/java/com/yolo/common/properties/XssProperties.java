@@ -1,4 +1,4 @@
-package com.yolo.xss.properties;
+package com.yolo.common.properties;
 
 import lombok.Getter;
 import lombok.Setter;

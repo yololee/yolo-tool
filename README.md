@@ -67,6 +67,42 @@ yolo:
     queue-capacity: 10000
 ```
 
+### 全局请求拦截
+
+```yml
+# 排除一些接口避免进行xss校验
+yolo:
+  request:
+    enabled: true # 开启自定义请求
+    skip-url: # 需要放行的接口
+      # 下边的是knife4j使用的
+      - /*.html
+      - /swagger-resources
+      - /webjars/**
+      - /**/api-docs
+      # swagger 文档配置
+      - /*/api-docs
+      - /*/api-docs/**
+      # 静态资源
+      - /*.html
+      - /**/*.html
+      - /**/*.css
+      - /**/*.js
+      # 公共路径
+      - /favicon.ico
+      - /error
+```
+
+### 本地文件上传
+
+```yml
+yolo:
+  upload:
+    enable: true   # 是否启用本地文件上传
+    default-max-size: 50000000 # 文档大小默认50M   50*1024*1024
+    default-file-name-length: 88 # 文档图片名称
+```
+
 ## mybatis-plus增强模块
 
 > 集成mybatis-plus
@@ -192,6 +228,6 @@ yolo:
     endpoint: oss-cn-beijing.aliyuncs.com # 对象存储服务的URL
     access-key: LTAI5tGXXXXXXXXXXp9bhB    # Access key就像用户ID，可以唯一标识你的账户
     secret-key: DY1A7KGWrxXXXXXXXGFWmjeXE # Secret key是你账户的密码
-    bucket-name: mytanghua                # 默认的存储桶名称
+    bucket-name: test               # 默认的存储桶名称
 ```
 

@@ -1,9 +1,9 @@
 package com.yolo.xss.core.serialize;
 
+import com.yolo.common.properties.XssProperties;
 import com.yolo.common.support.utils.spring.SpringUtil;
 import com.yolo.xss.core.clean.XssCleaner;
 import com.yolo.xss.core.XssType;
-import com.yolo.xss.properties.XssProperties;
 import com.yolo.xss.utils.XssUtil;
 import lombok.extern.slf4j.Slf4j;
 
