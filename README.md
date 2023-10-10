@@ -11,6 +11,7 @@ yolo-tool
 ├── yolo-tool-log -- 日志模块   
 ├── yolo-tool-xss -- xss模块  
 ├── yolo-tool-oss -- 对象存储模块  
+├── yolo-tool-redis -- redis模块  
 ```
 
 ## 基础启动模块
@@ -229,5 +230,98 @@ yolo:
     access-key: LTAI5tGXXXXXXXXXXp9bhB    # Access key就像用户ID，可以唯一标识你的账户
     secret-key: DY1A7KGWrxXXXXXXXGFWmjeXE # Secret key是你账户的密码
     bucket-name: test               # 默认的存储桶名称
+```
+
+## redis模块
+
+使用
+
+```xml
+        <dependency>
+            <groupId>com.yolo</groupId>
+            <artifactId>yolo-tool-redis</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+```
+
+### redis cache 增强
+
+支持 # 号分隔 cachename 和 超时，支持 ms（毫秒），s（秒），m（分），h（小时，默认一小时），d（天）等单位
+
+```java
+@Cacheable(value = "user#5m", key = "#id")
+public String selectById(Serializable id) {
+    log.info("selectById");
+    return "selectById:" + id;
+}
+```
+
+RedisCache 为简化 redis 使用的 bean
+
+```java
+@Autowired
+private RedisCache redisCache;
+
+@Override
+public String findById(Serializable id) {
+    return redisCache.get("user:" + id, () -> userMapper.selectById(id));
+}
+```
+
+### 分布式限流
+
+```yml
+yolo:
+  redis:
+    rate-limiter:
+      enable: true
+```
+
+使用注解
+
+```java
+/**
+ * 分布式 限流注解，默认速率为 600/ms
+ */
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+@Documented
+public @interface RateLimiter {
+
+	/**
+	 * 限流的 key 支持，必须：请保持唯一性
+	 *
+	 * @return key
+	 */
+	String value();
+
+	/**
+	 * 限流的参数，可选，支持 spring el # 读取方法参数和 @ 读取 spring bean
+	 *
+	 * @return param
+	 */
+	String param() default "";
+
+	/**
+	 * 支持的最大请求，默认: 100
+	 *
+	 * @return 请求数
+	 */
+	long max() default 100L;
+
+	/**
+	 * 持续时间，默认: 3600
+	 *
+	 * @return 持续时间
+	 */
+	long ttl() default 1L;
+
+	/**
+	 * 时间单位，默认为分
+	 *
+	 * @return TimeUnit
+	 */
+	TimeUnit timeUnit() default TimeUnit.MINUTES;
+}
 ```
 

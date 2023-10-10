@@ -18,6 +18,7 @@
         <module>yolo-tool-log</module>
         <module>yolo-tool-xss</module>
         <module>yolo-tool-oss</module>
+        <module>yolo-tool-redis</module>
     </modules>
 
 
