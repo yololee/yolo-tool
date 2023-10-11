@@ -54,7 +54,7 @@ public class TestFileController {
      */
     @PostMapping("/uploads")
     @ResponseBody
-    public R<Kv> uploadFiles(List<MultipartFile> files) {
+    public R<Kv> uploadFiles(@RequestPart List<MultipartFile> files) {
         try {
             // 上传文件路径
             String filePath = UploadProperties.getUploadPath();

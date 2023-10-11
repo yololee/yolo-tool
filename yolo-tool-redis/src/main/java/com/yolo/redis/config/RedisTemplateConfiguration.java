@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectMapper.DefaultTyping;
 import com.yolo.common.support.utils.jackson.JsonUtil;
-import com.yolo.redis.cache.RedisCache;
 import com.yolo.redis.props.RedisProperties;
 import com.yolo.redis.resolver.DefaultRedisKeyResolver;
 import com.yolo.redis.resolver.RedisKeyResolver;
@@ -89,11 +88,6 @@ public class RedisTemplateConfiguration {
 	@ConditionalOnMissingBean(ValueOperations.class)
 	public ValueOperations<String, Object> valueOperations(RedisTemplate<String, Object> micaRedisTemplate) {
 		return micaRedisTemplate.opsForValue();
-	}
-
-	@Bean
-	public RedisCache redisCache(RedisTemplate<String, Object> redisTemplate) {
-		return new RedisCache(redisTemplate);
 	}
 
 	@Bean(name = "redisUtil")

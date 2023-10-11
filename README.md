@@ -256,18 +256,6 @@ public String selectById(Serializable id) {
 }
 ```
 
-RedisCache 为简化 redis 使用的 bean
-
-```java
-@Autowired
-private RedisCache redisCache;
-
-@Override
-public String findById(Serializable id) {
-    return redisCache.get("user:" + id, () -> userMapper.selectById(id));
-}
-```
-
 ### 分布式限流
 
 ```yml
@@ -322,6 +310,40 @@ public @interface RateLimiter {
 	 * @return TimeUnit
 	 */
 	TimeUnit timeUnit() default TimeUnit.MINUTES;
+}
+```
+
+### 防止重复提交
+
+```yml
+yolo:
+  redis:
+    repeat-submit:
+      enable: true
+```
+
+```java
+/**
+ * 自定义注解防止表单重复提交
+ */
+@Inherited
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface RepeatSubmit {
+
+    /**
+     * 间隔时间(ms)，小于此时间视为重复提交
+     */
+    int interval() default 5000;
+
+    TimeUnit timeUnit() default TimeUnit.MILLISECONDS;
+
+    /**
+     * 提示消息
+     */
+    String message() default "不允许重复提交，请稍后再试";
+
 }
 ```
 

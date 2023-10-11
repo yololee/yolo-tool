@@ -3,11 +3,9 @@ package com.yolo.test.redis;
 import com.yolo.common.api.R;
 import com.yolo.common.support.utils.jackson.JsonUtil;
 import com.yolo.redis.anno.RateLimiter;
-import com.yolo.redis.cache.RedisCache;
+import com.yolo.redis.anno.RepeatSubmit;
 import com.yolo.redis.utils.RedisUtil;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -28,8 +26,6 @@ public class TestRedisController {
 
     private final RedisUtil redisUtil;
 
-    private final RedisCache redisCache;
-
     @GetMapping("/set")
     public R<String> set(){
         User user = new User();
@@ -42,7 +38,7 @@ public class TestRedisController {
     @GetMapping("/get")
     @RateLimiter(value = "1",max = 2,ttl = 5,timeUnit = TimeUnit.SECONDS)
     public R<User> get(){
-        User yolo = JsonUtil.readValue(Objects.requireNonNull(redisCache.get("yolo")).toString(), User.class);
+        User yolo = JsonUtil.readValue(Objects.requireNonNull(redisUtil.get("yolo")).toString(), User.class);
         return R.success(yolo);
     }
 
@@ -54,6 +50,12 @@ public class TestRedisController {
         user.setName("lisi");
         user.setAge(21);
         return R.success(user);
+    }
+
+    @GetMapping("/test2")
+    @RepeatSubmit
+    public R<String> testRepeatSubmit(String name){
+        return R.success(name);
     }
 
 

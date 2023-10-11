@@ -34,6 +34,11 @@ public class RedisProperties {
 	private RateLimiter rateLimiter = new RateLimiter();
 
 	/**
+	 * 重复提交配置
+	 */
+	private RepeatSubmit repeatSubmit = new RepeatSubmit();
+
+	/**
 	 * 序列化方式
 	 */
 	public enum SerializerType {
@@ -61,6 +66,15 @@ public class RedisProperties {
 	public static class RateLimiter {
 		/**
 		 * 是否开启 RateLimiter
+		 */
+		boolean enable = false;
+	}
+
+	@Getter
+	@Setter
+	public static class RepeatSubmit {
+		/**
+		 * 是否开启 RepeatSubmit
 		 */
 		boolean enable = false;
 	}

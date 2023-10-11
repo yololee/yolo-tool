@@ -2,6 +2,7 @@ package com.yolo.common.constant;
 
 /**
  * 系统常量
+ * @author jujueaoye
  */
 public interface SystemConstant {
 
@@ -66,6 +67,12 @@ public interface SystemConstant {
 	 * 资源映射路径 前缀
 	 */
 	String RESOURCE_PREFIX = "/profile";
+
+
+	/**
+	 * 防重提交 redis key
+	 */
+	String REPEAT_SUBMIT_KEY = "repeat_submit:";
 
 	/**
 	 * 默认为空消息
