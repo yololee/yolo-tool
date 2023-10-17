@@ -46,7 +46,7 @@ public class FormXssClean {
 			} else if (XssHolder.isEnabled()) {
 				String value = xssCleaner.clean(XssUtil.trim(text, properties.isTrimText()), XssType.FORM);
 				setValue(value);
-				log.debug("Request parameter value:{} cleaned up by mica-xss, current value is:{}.", text, value);
+				log.debug("Request parameter value:{} cleaned up by yolo, current value is:{}.", text, value);
 			} else {
 				setValue(XssUtil.trim(text, properties.isTrimText()));
 			}

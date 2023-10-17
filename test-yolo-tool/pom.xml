@@ -72,6 +72,24 @@
             <version>0.0.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.yolo</groupId>
+            <artifactId>yolo-tool-xxl-job</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yolo</groupId>
+            <artifactId>yolo-tool-http</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-json</artifactId>
+            <version>5.8.21</version>
+        </dependency>
+
     </dependencies>
 
 

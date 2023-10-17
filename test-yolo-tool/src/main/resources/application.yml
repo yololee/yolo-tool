@@ -52,7 +52,7 @@ mybatis-plus:
   #mybatis配置文件
   #config-location: classpath:mybatis-config.xml
   # mapper映射位置
-  mapper-locations: classpath:/mapper/*/**Mapper.xml
+  mapper-locations: classpath*:/mapper/*/**Mapper.xml
   #所有domain别名类所在包
   type-aliases-package: com.yolo
   # 启动时是否检查 MyBatis XML 文件的存在，默认不检查
@@ -157,6 +157,21 @@ yolo:
     enable: true   # 是否启用本地文件上传
     default-max-size: 50000000 # 文档大小默认50M   50*1024*1024
     default-file-name-length: 88 # 文档图片名称
+  xxl:
+    job:
+      enabled: false # 执行器开关
+      admin:
+        address: http://localhost:9100/xxl-job-admin # 调度中心地址：如调度中心集群部署存在多个地址则用逗号分隔 必填
+        access-token: xxl-job # 执行器通讯TOKEN：非空时启用
+        username: admin  # 新增配置 xxl-job-admin账号 必填
+        password: 123456 # 新增配置 xxl-job-admin密码 必填
+      executor:
+        app-name: test
+        title: yoloTest
+        address-type: 0
+        address-list:
+        port: 9102
+
 # Knife4j接口文档
 knife4j:
   enable: true

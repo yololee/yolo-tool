@@ -2,6 +2,8 @@ package com.yolo.launch;
 
 import com.yolo.common.support.utils.web.INetUtil;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.beans.factory.annotation.Autowired;

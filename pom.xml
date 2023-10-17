@@ -19,6 +19,8 @@
         <module>yolo-tool-xss</module>
         <module>yolo-tool-oss</module>
         <module>yolo-tool-redis</module>
+        <module>yolo-tool-http</module>
+        <module>yolo-tool-xxl-job</module>
     </modules>
 
 
